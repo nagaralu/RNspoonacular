@@ -1,4 +1,8 @@
-import { API_KEY } from './config.js';
+//import { API_KEY } from './config.js';
+const dotenv = require('dotenv');
+// Load env vars
+dotenv.config({ path: '../../.env' });
+
 const recipeContainer = document.querySelector('.recipe');
 
 const timeout = function (s) {
@@ -14,7 +18,7 @@ const timeout = function (s) {
 const showRecipe = async () => {
   try {
     const res = await fetch(
-      `https://api.spoonacular.com/recipes/214146/information?apiKey=${API_KEY}`
+      `https://api.spoonacular.com/recipes/214146/information?apiKey=${process.env.API_KEY}`
     );
     const data = await res.json();
 
