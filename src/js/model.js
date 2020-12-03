@@ -41,7 +41,7 @@ export const loadSearchResults = async function (query) {
   try {
     state.search.query = query;
     const data = await getJSON(
-      `${API_URL}complexSearch?query=${query}&number=20&apiKey=${process.env.API_KEY}`
+      `${API_URL}complexSearch?query=${query}&number=5&apiKey=${process.env.API_KEY}`
     );
     console.log(data);
 

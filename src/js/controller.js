@@ -1,9 +1,16 @@
 import * as model from './model';
 import recipeView from './views/recipeView';
 import searchView from './views/searchView';
+import resultsView from './views/resultsView';
+
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import { async } from 'regenerator-runtime';
+
+// this is related to parcel not javascript
+if (module.hot) {
+  module.hot.accept();
+}
 
 const controlRecipes = async () => {
   try {
@@ -23,6 +30,7 @@ const controlRecipes = async () => {
 
 const controlSearchResults = async () => {
   try {
+    resultsView.renderSpinner();
     // 1. Get search query
     const query = searchView.getQuery();
     if (!query) return;
@@ -31,7 +39,7 @@ const controlSearchResults = async () => {
     await model.loadSearchResults('pasta');
 
     // 3. Render results
-    console.log(model.state.search.results);
+    resultsView.render(model.state.search.results);
   } catch (error) {
     console.error(error);
   }
